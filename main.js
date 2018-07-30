@@ -1,7 +1,7 @@
 
 var animalContainer = document.getElementById("animal-info");
 var btn = document.getElementById("btn");
-var input=document.getElementById('inputText').value
+var input=document.getElementById('inputText').value;
 
 /* EXP */
 
@@ -9,7 +9,7 @@ var input=document.getElementById('inputText').value
 
 btn.addEventListener("click", function() {
   var ourRequest = new XMLHttpRequest();
-  var input=document.getElementById('inputText').value
+  var input=document.getElementById('inputText').value;
 
   ourRequest.open('GET', 'https://cors.io/?https://represent.opennorth.ca/postcodes/'+input);
   ourRequest.onload = function() {
