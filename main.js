@@ -1,5 +1,5 @@
 
-var animalContainer = document.getElementById("animal-info");
+var representativeContainer = document.getElementById("representative-info");
 var btn = document.getElementById("btn");
 var input=document.getElementById('inputText').value;
 
@@ -36,5 +36,5 @@ function renderHTML(data) {
   +phone+"</b></p>";
 
 
-  animalContainer.insertAdjacentHTML('beforeend', htmlString)
+  representativeContainer.insertAdjacentHTML('beforeend', htmlString)
 }
