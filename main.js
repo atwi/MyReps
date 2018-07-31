@@ -10,6 +10,8 @@ var input=document.getElementById('inputText').value;
 btn.addEventListener("click", function() {
   var ourRequest = new XMLHttpRequest();
   var input=document.getElementById('inputText').value;
+  input=input.replace(/\s+/, "");
+  console.log(input);
 
   ourRequest.open('GET', 'https://cors.io/?https://represent.opennorth.ca/postcodes/'+input);
   ourRequest.onload = function() {
