@@ -27,11 +27,14 @@ function renderHTML(data) {
         console.log(data.representatives_centroid[i].name);
         var MP=i;
     }
-    // ...
   }
-  var htmlString = "<br><p>"+"Your MP is <b>"+data.representatives_centroid[MP].name
-  +"</b>. Contact your MP at <b>"+data.representatives_centroid[MP].email+"</b> and call their office at <b>"
-  +data.representatives_centroid[MP].offices[0].tel+"</b></p>";
+  var email=data.representatives_centroid[MP].email;
+  var name=data.representatives_centroid[MP].name;
+  var phone=data.representatives_centroid[MP].offices[0].tel;
+  var htmlString = "<br><p>"+"Your MP is <b>"+name
+  +"</b>. Contact your MP at <b><a id='emailLink'>"+email+"</a></b> and call their office at <b>"
+  +phone+"</b></p>";
+
 
   animalContainer.insertAdjacentHTML('beforeend', htmlString)
 }
