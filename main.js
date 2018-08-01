@@ -10,6 +10,7 @@ var input=document.getElementById('inputText').value;
 btn.addEventListener("click", function() {
   var ourRequest = new XMLHttpRequest();
   var input=document.getElementById('inputText').value;
+  //Removes spaces from input string
   input=input.replace(/\s+/, "");
   console.log(input);
 
