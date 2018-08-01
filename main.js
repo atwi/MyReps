@@ -33,11 +33,15 @@ function renderHTML(data) {
     }
   }
   var email=data.representatives_centroid[MP].email;
+  //Converts email to a hyperlink that opens the user's email program
+  email="<a href='"+"mailto:"+email+"'>"+email+"</a>";
   var name=data.representatives_centroid[MP].name;
   var phone=data.representatives_centroid[MP].offices[0].tel;
+  //Converts phone to a hyperlink that opens the user's calling program
+  phone="<a href='"+"tel:"+phone+"'>"+phone+"</a>";
   var htmlString = "<br><p>"+"Your MP is <b>"+name
   +"</b>. Contact your MP at <b><a id='emailLink'>"+email+"</a></b> and call their office at <b>"
-  +phone+"</b></p>";
+  +phone+"</b>.</p>";
 
 
   representativeContainer.insertAdjacentHTML('beforeend', htmlString)
