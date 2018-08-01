@@ -22,7 +22,7 @@ btn.addEventListener("click", function() {
   ourRequest.onload = function() {
     var ourData = JSON.parse(ourRequest.responseText);
     renderHTML(ourData);
-
+    renderHTML2(ourData);
   }
   ourRequest.send();
 })
@@ -34,25 +34,11 @@ function renderHTML(data) {
         console.log("MP is "+data.representatives_centroid[i].name);
         var MP=i;
     }
-    //MPP stuff
-    else if (data.representatives_centroid[i].elected_office==="MPP") {
-      console.log("MPP is "+data.representatives_centroid[i].name);
-      var MPP=i;
-      var MPPname=data.representatives_centroid[i].name;
-      var MPPemail=data.representatives_centroid[i].email;
-      MPPemail="<a href='"+"mailto:"+MPPemail+"'>"+MPPemail+"</a>";
-    }
-  }
-  if (data.candidates_centroid[0].elected_office==="candidate") {
-    console.log("MPP is "+data.candidates_centroid[0].name);
-    var MPP=0;
-    var MPPemail=data.candidates_centroid[MPP].email;
-    MPPemail="<a href='"+"mailto:"+MPPemail+"'>"+MPPemail+"</a>";
-    var MPPname=data.candidates_centroid[0].name;
+
   }
 
 
-    //End of MPP stuff
+
 
   var email=data.representatives_centroid[MP].email;
   //Converts email to a hyperlink that opens the user's email program
@@ -64,10 +50,31 @@ function renderHTML(data) {
   var htmlString = "<br><p>"+"Your MP is <b>"+name
   +"</b>. Contact your MP at <b><a id='emailLink'>"+email+"</a></b> and call their office at <b>"
   +phone+"</b>.</p>"
-  //MPP stuff
-  +"<p>Your MPP is <b>"+MPPname+"</b>. Contact your MPP at <b>"+MPPemail+"</b>.</p>"
-  //End of MPP stuff
+
 
 
   representativeContainer.insertAdjacentHTML('beforeend', htmlString)
+}
+
+//MPP function
+function renderHTML2(data) {
+  if (data.candidates_centroid[0].elected_office==="candidate") {
+    console.log("MPP is "+data.candidates_centroid[0].name);
+    var MPP=0;
+    var MPPemail=data.candidates_centroid[MPP].email;
+    MPPemail="<a href='"+"mailto:"+MPPemail+"'>"+MPPemail+"</a>";
+    var MPPname=data.candidates_centroid[0].name;
+  }
+  else if (data.representatives_centroid[i].elected_office==="MPP") {
+    console.log("MPP is "+data.representatives_centroid[i].name);
+    var MPP=i;
+    var MPPname=data.representatives_centroid[i].name;
+    var MPPemail=data.representatives_centroid[i].email;
+    MPPemail="<a href='"+"mailto:"+MPPemail+"'>"+MPPemail+"</a>";
+  }
+  var htmlString = "<p>Your MPP is <b>"+MPPname+"</b>. Contact your MPP at <b>"+MPPemail+"</b>.</p>"
+  representativeContainer.insertAdjacentHTML('beforeend', htmlString)
+
+
+
 }
