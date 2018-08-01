@@ -3,7 +3,7 @@ var representativeContainer = document.getElementById("representative-info");
 var btn = document.getElementById("btn");
 var input=document.getElementById('inputText').value;
 
-/* EXP */
+//Function to format postal code input for use
 function format(text){
   //Removes spaces from input string
   text=text.replace(/\s+/, "");
@@ -11,7 +11,6 @@ function format(text){
   text=text.toUpperCase();
   return text;
 }
-/* EXP */
 
 btn.addEventListener("click", function() {
   var ourRequest = new XMLHttpRequest();
@@ -40,9 +39,21 @@ function renderHTML(data) {
       console.log("MPP is "+data.representatives_centroid[i].name);
       var MPP=i;
       var MPPname=data.representatives_centroid[i].name;
+      var MPPemail=data.representatives_centroid[i].email;
+      MPPemail="<a href='"+"mailto:"+MPPemail+"'>"+MPPemail+"</a>";
     }
-    //End of MPP stuff
   }
+  if (data.candidates_centroid[0].elected_office==="candidate") {
+    console.log("MPP is "+data.candidates_centroid[0].name);
+    var MPP=0;
+    var MPPemail=data.candidates_centroid[MPP].email;
+    MPPemail="<a href='"+"mailto:"+MPPemail+"'>"+MPPemail+"</a>";
+    var MPPname=data.candidates_centroid[0].name;
+  }
+
+
+    //End of MPP stuff
+
   var email=data.representatives_centroid[MP].email;
   //Converts email to a hyperlink that opens the user's email program
   email="<a href='"+"mailto:"+email+"'>"+email+"</a>";
@@ -54,7 +65,7 @@ function renderHTML(data) {
   +"</b>. Contact your MP at <b><a id='emailLink'>"+email+"</a></b> and call their office at <b>"
   +phone+"</b>.</p>"
   //MPP stuff
-  +"<p>Your MPP is <b>"+MPPname+"</b>.</p>"
+  +"<p>Your MPP is <b>"+MPPname+"</b>. Contact your MPP at <b>"+MPPemail+"</b>.</p>"
   //End of MPP stuff
 
 
