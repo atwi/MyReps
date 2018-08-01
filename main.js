@@ -12,8 +12,9 @@ btn.addEventListener("click", function() {
   var input=document.getElementById('inputText').value;
   //Removes spaces from input string
   input=input.replace(/\s+/, "");
+  //Capitalizes entire input string
+  input=input.toUpperCase();
   console.log(input);
-
   ourRequest.open('GET', 'https://cors.io/?https://represent.opennorth.ca/postcodes/'+input);
   ourRequest.onload = function() {
     var ourData = JSON.parse(ourRequest.responseText);
